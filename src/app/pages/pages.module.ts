@@ -8,6 +8,7 @@ import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';//componnetes que manejan la estructura del menu
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
+import { AccountSettingComponent } from './account-setting/account-setting.component';
 
 
 //modulo que utiliza al modulo shared(con todos sus componentes) ademas de los componnetes dentro de este propio modulo y que 
@@ -18,13 +19,15 @@ import { ComponentsModule } from '../components/components.module';
     PagesComponent,
     DashboardComponent,
     Grafica1Component,
-    ProgressComponent
+    ProgressComponent,
+    AccountSettingComponent
   ],
   exports: [//rutas que manejara pages(conmtenidas dentro de la carpeta page) inportadas dentro del modulo page
     PagesComponent,
     DashboardComponent,
     Grafica1Component,
-    ProgressComponent
+    ProgressComponent,
+    AccountSettingComponent//es necesario exportar devido a que estas rutas se usaran desde el modulo raiz
   ],
   imports: [
     FormsModule,

@@ -18,7 +18,7 @@ export class Grafica1Component {
   ];
 
   public contenido2 = [
-    [500, 200, 300]
+    [1, 1, 8]
   ];
   
   public contenido3 = [
