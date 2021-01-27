@@ -9,6 +9,8 @@ import { SharedModule } from '../shared/shared.module';//componnetes que manejan
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 //modulo que utiliza al modulo shared(con todos sus componentes) ademas de los componnetes dentro de este propio modulo y que 
@@ -20,7 +22,9 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
     DashboardComponent,
     Grafica1Component,
     ProgressComponent,
-    AccountSettingComponent
+    AccountSettingComponent,
+    PromesasComponent,
+    RxjsComponent
   ],
   exports: [//rutas que manejara pages(conmtenidas dentro de la carpeta page) inportadas dentro del modulo page
     PagesComponent,

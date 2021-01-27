@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 //modulo que incorpora los componentes Auth login y register
@@ -18,8 +19,12 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    RouterModule,
-    FormsModule
+    RouterModule,//permite navegar entre rutas
+    FormsModule,
+    ReactiveFormsModule,//trabajare con fromularios reactivios.
+    HttpClientModule//me permite trtabajar con peticiones HTTP 
   ]
 })
 export class AuthModule { }
+
+
