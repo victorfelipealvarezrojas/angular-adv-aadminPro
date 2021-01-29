@@ -1,9 +1,8 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../../../app/services/usuario.service';
 import Swal from 'sweetalert2';
-
 
 declare const gapi: any;
 
@@ -18,7 +17,7 @@ export class LoginComponent implements OnInit {
   public auth2: any;
 
   //creo mi formilario y para ello necesito usar FormBuilder
-  public loginForm = this.formBuilder.group({
+  public loginForm: FormGroup = this.formBuilder.group({
     email: [localStorage.getItem('user-name') || '', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(3)]],
     recuerdame: [false]
@@ -76,7 +75,6 @@ export class LoginComponent implements OnInit {
     this.startApp();
   };
 
-
   //funciones para implementar el login de google
   async startApp() {
       await this.usuarioService.googleInit().then(resultado=>{
@@ -102,6 +100,5 @@ export class LoginComponent implements OnInit {
         alert(JSON.stringify(error, undefined, 2));
       });
   };
-
 
 }

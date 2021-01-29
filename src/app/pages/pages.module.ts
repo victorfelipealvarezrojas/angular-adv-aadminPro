@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms'//me permite usar los ngmodel 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'//me permite usar los ngmodel 
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -11,6 +11,7 @@ import { ComponentsModule } from '../components/components.module';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 //modulo que utiliza al modulo shared(con todos sus componentes) ademas de los componnetes dentro de este propio modulo y que 
@@ -24,7 +25,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     ProgressComponent,
     AccountSettingComponent,
     PromesasComponent,
-    RxjsComponent
+    RxjsComponent,
+    PerfilComponent
   ],
   exports: [//rutas que manejara pages(conmtenidas dentro de la carpeta page) inportadas dentro del modulo page
     PagesComponent,
@@ -39,6 +41,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     SharedModule,//(modulo shared)modulo que manejara las rutas de componentes dentro de page(estructura del menu que se incrusta dentro del componente page)
     RouterModule,//incrustara componnetes dentro asi que necesita esto para usar <router-outlet></router-outlet> y es una alternativa a AppRoutingModule
     ComponentsModule,//inncrusta el modulo components que contiene el componente incrementador que se encuentra dentro de la carpeta components
+    ReactiveFormsModule,//trabajare con fromularios reactivios.
   ]
 })
 export class PagesModule { }

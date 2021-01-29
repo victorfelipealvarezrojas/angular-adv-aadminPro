@@ -15,7 +15,9 @@ export class SidebarService {
         { titulo: 'ProgressBar', url: 'progress' },
         { titulo: 'Gráfica', url: 'grafica1' },
         { titulo: 'Promesas', url: 'promesas' },
-        { titulo: 'Observables', url: 'observables' }
+        { titulo: 'Observables', url: 'observables' },
+        { titulo: 'Perfil', url: 'perfil' }
+        
       ]
     }
   ];
