@@ -12,6 +12,7 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { UsuarosComponent } from './mantenimientos/usuaros/usuaros.component';
 
 
 //modulo que utiliza al modulo shared(con todos sus componentes) ademas de los componnetes dentro de este propio modulo y que 
@@ -26,7 +27,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     AccountSettingComponent,
     PromesasComponent,
     RxjsComponent,
-    PerfilComponent
+    PerfilComponent,
+    UsuarosComponent
   ],
   exports: [//rutas que manejara pages(conmtenidas dentro de la carpeta page) inportadas dentro del modulo page
     PagesComponent,

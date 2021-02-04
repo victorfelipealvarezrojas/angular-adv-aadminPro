@@ -1,0 +1,92 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-subtitle">Parametros de busqueda por nombre de usuario</h6>
+                <input 
+                        class="form-control"
+                        placeholder="Buscar Usuario..."
+                        (keyup) = "Buscar(txt_Termino.value)"
+                        #txt_Termino
+                 />
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="cargando" class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading"></h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere </p>
+        </div>
+    </div>
+</div>
+<div *ngIf="!cargando" class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Usuarios</h4>
+                <h6 class="card-subtitle">Total de usuarios registrados en mi aplicacion ({{totalUsuario}})</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="w100">Avatar</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th class="w100">Role</th>
+                                <th class="w100">Auth</th>
+                                <th class="text-nowrap w100">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of usuarios">
+                                <td class="text-center">
+                                    <img [src]="item.imagenUrl" alt="avatar de usuario" class="img-avatar-table cursor" (click)="abrirModal(item)">
+                                </td>
+                                <td>{{item.nombre}}</td>
+                                <td>{{item.email}}</td>
+                                <td>
+                                    <select class="form-control w140" 
+                                            [(ngModel)]="item.rol"
+                                            (change)="cambiarRole(item)"
+                                    >
+                                        <option value="ADMIN_ROLE">Admin</option>
+                                        <option value="USER_ROLE">User</option>
+                                    </select>
+                                </td>
+                                <td class="text-center">
+                                    <a *ngIf="item.google" href="#" data-toggle="tooltip">
+                                        <i class="label label-danger fa fa-google"></i>
+                                    </a>
+                                   
+                                    <a *ngIf="!item.google" href="#" data-toggle="tooltip">
+                                        <i class="label label-info  fa fa-envelope"></i>
+                                    </a>
+                                </td>
+                                <td class="text-nowrap text-center">
+                                    <div class="text-center" >
+                                        <a  class="cursor"
+                                            data-toggle="tooltip" 
+                                            data-original-title="Borrar"
+                                            (click)="Eliminar(item)"
+                                        >
+                                            <i class="fa fa-close text-danger "></i>
+                                        </a>
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="txt_Termino.value.length === 0">
+                    <button (click)="avPAgina(-5)" class="btn btn-secondary">Anterior</button>
+                    &nbsp;
+                    <button (click)="avPAgina(5)" class="btn btn-secondary">Siguente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
 import { PagesComponent } from './pages.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { UsuarosComponent } from './mantenimientos/usuaros/usuaros.component';
 import { ProgressComponent } from './progress/progress.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
@@ -15,10 +16,11 @@ const Rutas: Routes = [
     //modulo de rutas hijas dentro de pages, pages contiene la estructura principal(menu) y se inporta dentro del modulo de rutas principales
     //app-routing.module
     {
-        path: 'dashboard', 
-        component: PagesComponent, 
-        canActivate:[AuthGuard],//el guard que se encarga de la proteccion de lar rutas(guards/auth.guard) maneja un boolena y se gatilla en la navegacion entre estas rutas
+        path: 'dashboard',
+        component: PagesComponent,
+        canActivate: [AuthGuard],//el guard que se encarga de la proteccion de lar rutas(guards/auth.guard) maneja un boolena y se gatilla en la navegacion entre estas rutas
         children: [
+            //aqui disponibilizo mis rutas
             //cuando la ruta este vacia me enviara va la principal que contiene el menu
             //esta ruta principal "/" acepta todas estar rutas hijas
             { path: '', component: DashboardComponent, data: { 'titulo': 'Dashboard' } },
@@ -27,8 +29,10 @@ const Rutas: Routes = [
             { path: 'account-setting', component: AccountSettingComponent, data: { 'titulo': 'AccountSetting' } },
             { path: 'promesas', component: PromesasComponent, data: { 'titulo': 'Promesas' } },
             { path: 'observables', component: RxjsComponent, data: { 'titulo': 'Rxjs' } },
-            { path: 'perfil', component: PerfilComponent, data: { 'titulo': 'Perfil' } }
-            //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+            { path: 'perfil', component: PerfilComponent, data: { 'titulo': 'Perfil' } },
+            { path: 'perfil', component: PerfilComponent, data: { 'titulo': 'Perfil' } },
+            /* ==>  MANTENIMIENTOS   <== */
+            { path: 'usuarios', component: UsuarosComponent, data: { 'titulo': 'Usuarios de aplicacion' } },
         ]
     },
 ]

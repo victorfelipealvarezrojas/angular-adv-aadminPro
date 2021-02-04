@@ -6,7 +6,7 @@ import { UsuarioService } from '../services/usuario.service';
   providedIn: 'root'
 })
 
-
+//los guard se encargan de la proteccion de las rutas dentro de page.routes
 export class AuthGuard implements CanActivate {
 
   constructor(

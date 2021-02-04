@@ -3,13 +3,15 @@ import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { tap, map, catchError } from 'rxjs/operators';//operadores que se usan con observables(programacion reactiva) y tap`dispara acciones o eventos secundarios(efectos)
+import Swal from 'sweetalert2';
 import { environment } from '../../environments/environment';
 import { loginForm, resultLogin, resultLoginGoogle, resultReviewToken } from '../interface/login-form.interface';
-import { RegisterForm, Registerresult } from '../interface/register-form.interface';
+import { RegisterForm, Registerresult, ICargarUsuario } from '../interface/register-form.interface';
 import { Usuario } from '../models/usuario.models';
 
 //contiene las URL(base) de la API 
 const base_url = environment.base_url;
+//pertenece a la autenticacion con gogle
 declare const gapi: any;
 
 @Injectable({
@@ -18,13 +20,13 @@ declare const gapi: any;
 
 export class UsuarioService {
 
-  public auth2: any;
+  public auth2: any;//google_Auth
   public _usuario: Usuario;
   //importo HttpClient que me permite realizar peticiones HTTP
   constructor(
     private _http: HttpClient,
     private router: Router,
-    private NgZone: NgZone
+    private NgZone: NgZone//para mantener el foco en angular(se pierde el foco al implementyar hoohle_Auth)
   ) {
     this.googleInit();//ejecuto la promesa qie inicializa la funcionalidad de google
   }
@@ -35,6 +37,14 @@ export class UsuarioService {
 
   get uid(): string {
     return this._usuario.uid || '';
+  }
+
+  get headers() {
+    return {
+      headers: {
+        'x-token': this.Token
+      }
+    }
   }
 
   googleInit() {
@@ -61,14 +71,10 @@ export class UsuarioService {
 
     formData = {
       ...formData,
-      rol: this._usuario.role
+      rol: this._usuario.rol
     }
 
-    return this._http.put(`${base_url}/usuario/${this.uid}`, formData, {
-      headers: {
-        'x-token': this.Token
-      }
-    });
+    return this._http.put(`${base_url}/usuario/${this.uid}`, formData, this.headers );
   }
 
   loginGoogle(token: string) {
@@ -107,8 +113,6 @@ export class UsuarioService {
       tap((resultadoPeticion: resultReviewToken) => {
         const { email, google, imagen, nombre, rol, uid } = resultadoPeticion.usuario;
         this._usuario = new Usuario(nombre, email, '', rol, google, imagen, uid);
-
-        console.log(" this._usuario", this._usuario)
         localStorage.setItem('token-user', resultadoPeticion.token);
       }),
       map((respuesta) => true),
@@ -117,5 +121,40 @@ export class UsuarioService {
     );
   }
 
+  cargarUsuarios(desde: number = 0) {
+    const url = `${base_url}/usuario?desde=${desde}`;
+    return this._http.get<ICargarUsuario>(url, this.headers).pipe(
+      map(res => {
+        const usuario = res.usuario.map(usuario => new Usuario
+          (
+            usuario.nombre,
+            usuario.email,
+            '',
+            usuario.rol,
+            usuario.google,
+            usuario.imagen,
+            usuario.uid
+          )
+        );
+
+        return {
+          tolal_registros: res.tolal_registros,
+          usuario
+        };
+      })
+    )
+  }
+
+  eliminarUsuario(usuario: Usuario) {
+    const url = `${base_url}/usuario/${usuario.uid}`;
+    return this._http.delete(url, this.headers);
+  }
+
+  guardarUsuario(usuario: Usuario) {
+    return this._http.put(`${base_url}/usuario/${usuario.uid}`, usuario, this.headers);
+  }
+
 
 }
+
+

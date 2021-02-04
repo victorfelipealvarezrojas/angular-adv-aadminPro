@@ -6,13 +6,16 @@ export class Usuario {
         public nombre: string,
         public email: string,
         public password?: string,
-        public role?: string,
+        public rol?: string,
         public google?: boolean,
         public imagen?: string,
         public uid?: string
     ) { }
    
     get imagenUrl() {
+
+
+
         if (this.imagen) {
             if (this.imagen.includes('https')) {
                 return this.imagen;

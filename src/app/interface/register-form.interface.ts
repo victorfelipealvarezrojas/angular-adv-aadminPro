@@ -1,3 +1,5 @@
+import { Usuario } from "../models/usuario.models";
+
 //las interfaces no tienen una version en js asi que solo sirven para estructurar las clase o limitar el comportam,iento de estas 
 export interface RegisterForm {
     nombre: string;
@@ -19,3 +21,8 @@ export interface Registerresult {
         uid: string
     }
 }
+
+export interface ICargarUsuario { 
+    tolal_registros: number;
+    usuario: Usuario[];
+ }
