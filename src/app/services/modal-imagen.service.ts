@@ -31,8 +31,10 @@ export class ModalImagenService {
     this.id = id;
 
     if(img.includes('https')){
+      //carga imagen que llega desde url, para este es un url
       this.img = img;
     }else{
+      //obtiene la ruta de la imagen en el backend, en este caso img contiene el nombrev del archivo en BD
       this.img= `${base_url}/upload/${tipo}/${img}`;
     }
 

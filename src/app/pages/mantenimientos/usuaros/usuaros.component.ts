@@ -41,7 +41,7 @@ export class UsuarosComponent implements OnInit, OnDestroy {
     this.imgSubs = this.modalImagenService.nuevaImagenEvent
     //no alcanzaba a actualizar la imagen asi que le doy un tiempo de espera
       .pipe(delay(1000))
-      .subscribe(imagen => this.cargarUsuarios());
+      .subscribe(() => this.cargarUsuarios());
   }
 
   cargarUsuarios() {
@@ -66,7 +66,7 @@ export class UsuarosComponent implements OnInit, OnDestroy {
 
   Buscar(termino: string) {
     if (termino.length === 0) return this.usuarios = this.usuarios_temp;
-    this.busquedasService.buscar('usuarios', termino).subscribe(resultado => {
+    this.busquedasService.buscar('usuarios', termino).subscribe((resultado: Usuario[]) => {
       this.usuarios = resultado
     });
   }

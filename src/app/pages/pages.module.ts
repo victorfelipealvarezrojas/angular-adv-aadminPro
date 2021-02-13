@@ -13,6 +13,10 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuarosComponent } from './mantenimientos/usuaros/usuaros.component';
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { PipesModule } from '../pipes/pipes.module';
+import { MedicoComponent } from './mantenimientos/medicos/medico.component';
 
 
 //modulo que utiliza al modulo shared(con todos sus componentes) ademas de los componnetes dentro de este propio modulo y que 
@@ -28,7 +32,10 @@ import { UsuarosComponent } from './mantenimientos/usuaros/usuaros.component';
     PromesasComponent,
     RxjsComponent,
     PerfilComponent,
-    UsuarosComponent
+    UsuarosComponent,
+    HospitalesComponent,
+    MedicosComponent,
+    MedicoComponent
   ],
   exports: [//rutas que manejara pages(conmtenidas dentro de la carpeta page) inportadas dentro del modulo page
     PagesComponent,
@@ -44,6 +51,7 @@ import { UsuarosComponent } from './mantenimientos/usuaros/usuaros.component';
     RouterModule,//incrustara componnetes dentro asi que necesita esto para usar <router-outlet></router-outlet> y es una alternativa a AppRoutingModule
     ComponentsModule,//inncrusta el modulo components que contiene el componente incrementador que se encuentra dentro de la carpeta components
     ReactiveFormsModule,//trabajare con fromularios reactivios.
+    PipesModule//modulo que trabaja todas los pipes del sistema, el pipe que carga la imagen se encuentra aqui y para usarlo se declara en el modulo pero no en los componente que lo usan
   ]
 })
 export class PagesModule { }

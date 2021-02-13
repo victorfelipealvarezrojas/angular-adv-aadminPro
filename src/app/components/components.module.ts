@@ -17,7 +17,7 @@ import { ModalImagenComponent } from './modal-imagen/modal-imagen.component';
   exports: [
     IncrementadorComponent,
     donaComponent,
-    ModalImagenComponent//este componente lo utilizare fuera del modulo y por eso lo exporto
+    ModalImagenComponent//este componente lo utilizare fuera del modulo principal y por eso lo exporto
   ],
   imports: [
     CommonModule,

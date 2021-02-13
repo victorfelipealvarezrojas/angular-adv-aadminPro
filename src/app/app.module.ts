@@ -23,6 +23,6 @@ import { AuthModule } from './auth/auth.module';
     PagesModule//rutas principales de pagina...rutas principales publicas(estructura principal de la pagina) contiene las rutas del modulo page
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent]//componente principal desde el cual construioremos el resto de la app
 })
 export class AppModule { }

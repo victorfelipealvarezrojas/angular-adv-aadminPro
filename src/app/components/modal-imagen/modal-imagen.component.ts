@@ -51,7 +51,7 @@ export class ModalImagenComponent implements OnInit {
       .then(img => {
         Swal.fire({
           title: 'Aceptado!',
-          text: "La fotografia del usuario fue actualizada",
+          text: `La fotografia del ${tipo} fue actualizada`,
           icon: 'success',
           confirmButtonText: 'Aceptar'
         });

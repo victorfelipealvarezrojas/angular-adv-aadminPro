@@ -1,6 +1,6 @@
 import { Usuario } from "../models/usuario.models";
 
-//las interfaces no tienen una version en js asi que solo sirven para estructurar las clase o limitar el comportam,iento de estas 
+//las interfaces no tienen una version en js asi que solo sirven para estructurar las clase o limitar el comportamiento de estas 
 export interface RegisterForm {
     nombre: string;
     email: string;

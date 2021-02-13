@@ -1,0 +1,99 @@
+<div class="row animated fadeIn fast">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-subtitle">
+          Parametros de busqueda por nombre de hospital
+        </h6>
+        <input 
+                (keyup) = "Buscar(txt_Termino.value)"
+                #txt_Termino
+                class="form-control" 
+                placeholder="Buscar Hospital..." 
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row animated fadeIn fast" *ngIf="Cargando">
+  <div class="col-12">
+    <div class="alert alert-info text-center">
+      <h4 class="alert-heading"></h4>
+      <i class="fa fa-spin fa-refresh fa-2x"></i>
+      <p class="mb-0">Por favor espere</p>
+    </div>
+  </div>
+</div>
+<div class="row animated fadeIn fast" *ngIf="!Cargando">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="text-left col-6">
+            <h4 class="card-title">Hospitales</h4>
+            <h6 class="card-subtitle">
+              Hospitales registradsos en mi aplicacion({{
+                HospitalesList.length
+              }}).
+            </h6>
+          </div>
+          <div class="text-right col-6">
+            <button class="btn btn-primary mb-grid-add" (click) ="abrirSwalAlert()">
+              <i class="fa fa-hospital-o"></i>
+              Nuevo Hospital
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center">Foto</th>
+                <th>Nombre</th>
+                <th class="w100 text-nowrap">Opciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let item of HospitalesList">
+                <td class="text-center">
+                  <img
+                    class="w100 cursor"
+                    (click)="abrirModal(item)"
+                    [src]="item.imagen | imagen: 'hospitales'"
+                    alt=""
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nombre hospital.."
+                    [(ngModel)]="item.nombre"
+                  />
+                </td>
+                <td class="text-nowrap text-center cursor">
+                  <a
+                    (click)="guardarcambios(item)"
+                    data-toggle="tooltip"
+                    data-original-title="Guardar"
+                  >
+                    <i class="fa fa-save text-inverse m-r-10"></i>
+                  </a>
+                  <a
+                    (click)="eliminarHospital(item)"
+                    data-toggle="tooltip"
+                    data-original-title="Borrar"
+                  >
+                    <i class="fa fa-close text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

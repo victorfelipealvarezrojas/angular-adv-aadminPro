@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Hospital } from '../models/hospitales.models';
+import { Medico } from '../models/medicos.models';
 import { Usuario } from '../models/usuario.models';
 
 //contiene las URL(base) de la API
@@ -46,6 +48,15 @@ export class BusquedaService {
     );
   }
 
+  private transfromaHospitales(resultado: any[]): Hospital[] {
+    return resultado;
+  }
+
+  private transfromaMedicos(resultado: any[]): Medico[] {
+    return resultado;
+  }
+
+
   buscar(tipo: 'usuarios' | 'medicos' | 'hospitales', termino: string) {
 
     const url = `${base_url}/todo/coleccion/${tipo}/${termino}`;
@@ -56,10 +67,10 @@ export class BusquedaService {
             return this.transfromaUsuarios(respuesta.resultado)
             break;
           case 'medicos':
-
+            return this.transfromaMedicos(respuesta.resultado)
             break;
           case 'hospitales':
-
+            return this.transfromaHospitales(respuesta.resultado)
             break;
 
           default:
