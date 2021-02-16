@@ -4,6 +4,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 //este modulo incorpòra los componnetes dentro de la carpeta shared que seran utilizado por medio de 
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,//incrustara componnetes dentro asi que necesita esto para usar <router-outlet></router-outlet> y es una alternativa a AppRoutingModule
+    FormsModule//me permite trabajar con formularios
   ],
 })
 export class SharedModule { }

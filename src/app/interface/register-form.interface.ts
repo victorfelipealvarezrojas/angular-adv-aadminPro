@@ -19,7 +19,8 @@ export interface Registerresult {
         nombre: string,
         email: string,
         uid: string
-    }
+    },
+    menu?:string
 }
 
 export interface ICargarUsuario { 

@@ -17,6 +17,7 @@ import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.comp
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 
 //modulo que utiliza al modulo shared(con todos sus componentes) ademas de los componnetes dentro de este propio modulo y que 
@@ -35,7 +36,8 @@ import { MedicoComponent } from './mantenimientos/medicos/medico.component';
     UsuarosComponent,
     HospitalesComponent,
     MedicosComponent,
-    MedicoComponent
+    MedicoComponent,
+    BusquedaComponent
   ],
   exports: [//rutas que manejara pages(conmtenidas dentro de la carpeta page) inportadas dentro del modulo page
     PagesComponent,

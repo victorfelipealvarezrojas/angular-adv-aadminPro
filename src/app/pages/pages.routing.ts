@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../guards/auth.guard';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
@@ -13,6 +12,9 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
+import { AuthGuard } from '../guards/auth.guard';
+import { AdminGuard } from '../guards/admin.guard';
 
 //aqui defino las rutas que tedra el menu
 const Rutas: Routes = [
@@ -30,15 +32,17 @@ const Rutas: Routes = [
             { path: 'progress', component: ProgressComponent, data: { 'titulo': 'Progress' } },
             { path: 'grafica1', component: Grafica1Component, data: { 'titulo': 'Grafica1' } },
             { path: 'account-setting', component: AccountSettingComponent, data: { 'titulo': 'AccountSetting' } },
+            { path: 'buscar/:texto', component: BusquedaComponent, data: { 'titulo': 'Busquedas Glogales' } },
             { path: 'promesas', component: PromesasComponent, data: { 'titulo': 'Promesas' } },
             { path: 'observables', component: RxjsComponent, data: { 'titulo': 'Rxjs' } },
             { path: 'perfil', component: PerfilComponent, data: { 'titulo': 'Perfil' } },
             { path: 'perfil', component: PerfilComponent, data: { 'titulo': 'Perfil' } },
             /* ==>  MANTENIMIENTOS   <== */
-            { path: 'usuarios', component: UsuarosComponent, data: { 'titulo': 'Usuarios de aplicacion' } },
             { path: 'hospitales', component: HospitalesComponent, data: { 'titulo': 'Mantenimiento de Hospitales' } },
             { path: 'medicos', component: MedicosComponent, data: { 'titulo': 'Mantenimiento de Medicos' } },
-            { path: 'medico/:id', component: MedicoComponent, data: { 'titulo': 'Mantenimiento de Medico' } }
+            { path: 'medico/:id', component: MedicoComponent, data: { 'titulo': 'Mantenimiento de Medico' } },
+            //rutas de rol admin
+            { path: 'usuarios', canActivate: [AdminGuard], component: UsuarosComponent, data: { 'titulo': 'Usuarios de aplicacion' } }
         ]
     },
 ]

@@ -7,6 +7,7 @@ export interface loginForm {
 export interface resultLogin {
     ok: boolean;
     token: string;
+    menu?:string;
 }
 
 export interface resultReviewToken {
@@ -19,11 +20,13 @@ export interface resultReviewToken {
         nombre: string
         rol: string
         uid: string
-    }
+    },
+    menu?:string
 }
 
 
 export interface resultLoginGoogle {
     ok: boolean;
     tokenId: string;
+    menu?:string;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingService } from '../services/setting.service';
+import { SidebarService } from '../services/sidebar.service';
 
 //necesito utilizar una funcion global dentro de mi jquery(custom.js) y para que react me la reconozca la declado 
 //la declaro dentro de este componente que es el principal y el que contiene todos los moduloas o paginas q estan dentyro del menu principal
@@ -14,13 +15,14 @@ declare function customInitFunction();
 export class PagesComponent implements OnInit {
 
   //private settingsService: SettingService desde aqui controlo el cambio de theme de la app al cargar la pagina
-  constructor(private settingsService: SettingService) {
+  constructor(private settingsService: SettingService,private SidebarService: SidebarService) {
     //*********seguramente lo eliminare de aqui en el futuro************
     //customInitFunction();//seguramente lo eliminare de aqui en el futuro
   }
 
   ngOnInit(): void {
     customInitFunction();
+    this.SidebarService.cargarMenu();
   }
 
 }

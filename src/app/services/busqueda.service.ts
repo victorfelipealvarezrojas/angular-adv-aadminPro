@@ -80,6 +80,12 @@ export class BusquedaService {
     );
   }
 
+  busquedasGlobales(texto: string){
+    const url = `${base_url}/todo/${texto}`;
+    return this._http.get(url, this.headers);
+
+  }
+
 
 
 

@@ -19,7 +19,6 @@ declare const gapi: any;
 })
 
 export class UsuarioService {
-
   public auth2: any;//google_Auth
   public _usuario: Usuario;
   //importo HttpClient que me permite realizar peticiones HTTP
@@ -37,6 +36,10 @@ export class UsuarioService {
 
   get uid(): string {
     return this._usuario.uid || '';
+  }
+
+  get role():string  {
+    return this._usuario.rol;
   }
 
   get headers() {
@@ -62,18 +65,16 @@ export class UsuarioService {
   crearUsuario(frmData: RegisterForm) {
     return this._http.post(`${base_url}/usuario`, frmData).pipe(
       tap((resultadoPeticion: Registerresult) => {
-        localStorage.setItem('token-user', resultadoPeticion.token);
+        localStorage.setItem('MENU',JSON.stringify(resultadoPeticion.menu))
       })
     );
   }
 
   actualizarPerfil(formData: { email: string, nombre: string, rol: string }) {
-
     formData = {
       ...formData,
       rol: this._usuario.rol
     }
-
     return this._http.put(`${base_url}/usuario/${this.uid}`, formData, this.headers );
   }
 
@@ -81,6 +82,7 @@ export class UsuarioService {
     return this._http.post(`${base_url}/login/google`, { token }).pipe(
       tap((resultadoPeticion: resultLoginGoogle) => {
         localStorage.setItem('token-user', resultadoPeticion.tokenId);
+        localStorage.setItem('MENU',JSON.stringify(resultadoPeticion.menu))
       })
     );
   }
@@ -89,6 +91,7 @@ export class UsuarioService {
     return this._http.post(`${base_url}/login`, frmData).pipe(
       tap((resultadoPeticion: resultLogin) => {
         localStorage.setItem('token-user', resultadoPeticion.token);
+        localStorage.setItem('MENU',JSON.stringify(resultadoPeticion.menu))
       })
     );
   }
@@ -97,6 +100,7 @@ export class UsuarioService {
   //y esto ocurre xq la autentificacion de google no pertenece a angular y es alñgo que ocurre fuera
   logout() {
     localStorage.removeItem('token-user');
+    localStorage.removeItem('MENU');
     this.auth2.signOut().then(() => {
       this.NgZone.run(() => {
         this.router.navigateByUrl('/login');
@@ -114,6 +118,7 @@ export class UsuarioService {
         const { email, google, imagen, nombre, rol, uid } = resultadoPeticion.usuario;
         this._usuario = new Usuario(nombre, email, '', rol, google, imagen, uid);
         localStorage.setItem('token-user', resultadoPeticion.token);
+        localStorage.setItem('MENU',JSON.stringify(resultadoPeticion.menu))
       }),
       map((respuesta) => true),
       catchError(error => of(false))//of(false) me permite crear un obserbale en base al valor dentro de of(), enn este caso un false
@@ -136,7 +141,6 @@ export class UsuarioService {
             usuario.uid
           )
         );
-
         return {
           tolal_registros: res.tolal_registros,
           usuario
